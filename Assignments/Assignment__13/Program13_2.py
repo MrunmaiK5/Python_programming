@@ -1,8 +1,8 @@
 #######################################################################################
 #   Function name   :   AreaOfCircle
 #   Description     :   Calculates area of circle
-#   Input           :   float
-#   Output          :   float
+#   Input           :   Float
+#   Output          :   Float
 #   Author          :   Mrunmai Jitendra Khadpe
 #   Date            :   18/01/26
 #######################################################################################

@@ -1,6 +1,6 @@
 #######################################################################################
 #   Function name   :   PerfectNo
-#   Description     :   Checks whether given number is a perfect number or not
+#   Description     :   Checks whether given number is a perfect number 
 #   Input           :   Integer
 #   Output          :   Boolean
 #   Author          :   Mrunmai Jitendra Khadpe

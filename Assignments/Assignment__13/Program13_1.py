@@ -7,11 +7,10 @@
 #   Date            :   18/01/26
 #######################################################################################
 
-def AreaOfRect(Len, Wid):
+def AreaOfRect(Len, Widt):
     Area = 0
-    Area = Len * Wid
+    Area = Len * Widt
     return Area
-
 
 def main():
     Length = 0
