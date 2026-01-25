@@ -44,15 +44,6 @@ def Max(No1, No2):
     else:
         return No2
 
-#######################################################################################
-#   Function name   :   filterX
-#   Description     :   Returns elements from list that satisfy the condition  
-#   Input           :   List, Function
-#   Output          :   List
-#   Author          :   Mrunmai Jitendra Khadpe
-#   Date            :   23/01/26
-#######################################################################################
-
 def filterX(task, Arr):
     Result = list()
 
@@ -62,15 +53,6 @@ def filterX(task, Arr):
 
     return Result
 
-#######################################################################################
-#   Function name   :   mapX
-#   Description     :   Returns elements by appying same function to each
-#   Input           :   List, Function
-#   Output          :   List
-#   Author          :   Mrunmai Jitendra Khadpe
-#   Date            :   23/01/26
-#######################################################################################
-
 def mapX(task, Arr):
     Result = list()
 
@@ -78,15 +60,6 @@ def mapX(task, Arr):
         Result.append(task(num))
 
     return Result
-
-#######################################################################################
-#   Function name   :   reduceX
-#   Description     :   Applies function to reduce iterable into single value
-#   Input           :   List, Function
-#   Output          :   Integer
-#   Author          :   Mrunmai Jitendra Khadpe
-#   Date            :   23/01/26
-#######################################################################################
 
 def reduceX(task, Arr):
     Result = 0
