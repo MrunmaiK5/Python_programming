@@ -35,11 +35,12 @@ def Thread2():
 def main(): 
 
     t1 = threading.Thread(target=Thread1)
-    t1.start()
-    t1.join()
-
     t2 = threading.Thread(target=Thread2)
+
+    t1.start()
     t2.start()
+
+    t1.join()
     t2.join()
 
 

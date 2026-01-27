@@ -36,11 +36,12 @@ def OddFactor(No):
     
 def main(): 
     t1 = threading.Thread(target=EvenFactor, args=(12,))
-    t1.start()
-    t1.join()
-
     t2 = threading.Thread(target=OddFactor, args=(12,))
+    
+    t1.start()
     t2.start()
+    
+    t1.join()
     t2.join()
 
     print("Exit from main")

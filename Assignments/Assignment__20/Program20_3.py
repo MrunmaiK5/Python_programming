@@ -39,11 +39,12 @@ def main():
     List1 = [10,21,56,25,64,78,11]
 
     t1 = threading.Thread(target=EvenList, args=(List1,))
-    t1.start()
-    t1.join()
-
     t2 = threading.Thread(target=OddList, args=(List1,))
+
+    t1.start()
     t2.start()
+
+    t1.join()
     t2.join()
 
     print("Exit from main")

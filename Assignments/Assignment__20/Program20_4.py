@@ -65,15 +65,15 @@ def main():
     String = "Mrunmai Khadpe 100"
 
     t1 = threading.Thread(target=Small, args=(String,))
-    t1.start()
-    t1.join()
-
     t2 = threading.Thread(target=Capital, args=(String,))
-    t2.start()
-    t2.join()
-
     t3 = threading.Thread(target=Digits, args=(String,))
+
+    t1.start()
+    t2.start()
     t3.start()
+
+    t1.join()
+    t2.join()
     t3.join()
 
     print("Exit from main")
