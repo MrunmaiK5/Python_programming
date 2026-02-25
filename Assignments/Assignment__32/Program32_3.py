@@ -5,16 +5,16 @@ import time
 import shutil
 import hashlib
 
-########################################################################################################
-#   Function name   :   DirectoryDuplicate
-#   Description     :   Writes all duplicate file names into a file "Log.txt"
+##########################################################################################################
+#   Function name   :   DirectoryDuplicateRemoval
+#   Description     :   Writes all duplicate file names into file "Log.txt" and deletes them from folder
 #   Input           :   String
 #   Output          :   Nothing
 #   Author          :   Mrunmai Jitendra Khadpe
 #   Date            :   25/02/26
-########################################################################################################
+##########################################################################################################
 
-def DirectoryDuplicate(DictName):
+def DirectoryDuplicateRemoval(DictName):
     try:        
         name = "Log.txt"
         lobj = open(name,"w")
@@ -48,11 +48,17 @@ def DirectoryDuplicate(DictName):
                     duplicate[chk] = [file]
 
         Res = list(filter(lambda x : len(x) > 1 , duplicate.values()))
-        
+        Count = 0
+
         for List in Res:
             for dpfile in List: 
-                lobj.write(dpfile+"\n")
+                Count = Count + 1
+                if(Count > 1):
+                    lobj.write(dpfile+"\n")
+                    os.remove(dpfile)
+            Count = 0
 
+        
         lobj.close()
 
         print("Created log file successfully")
@@ -70,7 +76,7 @@ def main():
 
     else:
 
-        schedule.every(20).seconds.do(DirectoryDuplicate, sys.argv[1])
+        schedule.every(20).seconds.do(DirectoryDuplicateRemoval, sys.argv[1])
         print("Process has been started")
         while(True):
             schedule.run_pending()

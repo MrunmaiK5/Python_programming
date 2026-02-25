@@ -6,8 +6,9 @@ import shutil
 import hashlib
 
 ########################################################################################################
-#   Function name   :   DirectoryDuplicate
-#   Description     :   Writes all duplicate file names into a file "Log.txt"
+#   Function name   :   DirectoryDuplicateRemoval
+#   Description     :   Writes all duplicate file names into a file "Log.txt" and deletes them
+#                       and writes execution time of script 
 #   Input           :   String
 #   Output          :   Nothing
 #   Author          :   Mrunmai Jitendra Khadpe
@@ -17,7 +18,7 @@ import hashlib
 def DirectoryDuplicate(DictName):
     try:        
         name = "Log.txt"
-        lobj = open(name,"w")
+        lobj = open(name,"a")
 
         if (os.path.exists(DictName) == False):
             print("Unable to calculate checksum as no such directory exists")
@@ -48,11 +49,17 @@ def DirectoryDuplicate(DictName):
                     duplicate[chk] = [file]
 
         Res = list(filter(lambda x : len(x) > 1 , duplicate.values()))
-        
+        Count = 0
+
         for List in Res:
             for dpfile in List: 
-                lobj.write(dpfile+"\n")
+                Count = Count + 1
+                if(Count > 1):
+                    lobj.write(dpfile+"\n")
+                    os.remove(dpfile)
+            Count = 0
 
+        
         lobj.close()
 
         print("Created log file successfully")
@@ -60,21 +67,37 @@ def DirectoryDuplicate(DictName):
     except:
         print("Unable to create log file")
 
+    
 def main():
 
     # python filename.py directory_name
+    try:
+        if (len(sys.argv) != 2):
+            print("Please enter correct arguments")
+            print("Enter folder name")
+        else:
+            starttime = time.time()
+            schedule.every(20).seconds.do(DirectoryDuplicate, sys.argv[1])
+            print("Process has been started")
+            
+            while(True):
+                schedule.run_pending()
+                time.sleep(1)
 
-    if (len(sys.argv) != 2):
-        print("Please enter correct arguments")
-        print("Enter folder name")
+    except KeyboardInterrupt:
+        endtime = time.time()
 
-    else:
-
-        schedule.every(20).seconds.do(DirectoryDuplicate, sys.argv[1])
-        print("Process has been started")
-        while(True):
-            schedule.run_pending()
-            time.sleep(1)
+        name = "Log.txt"
+        lobj = open(name,"a")
+        
+        lobj.write("\n---------------------------------------------------------------------------")
+        
+        ETime = str(endtime - starttime)
+        lobj.write("\nExecution time : "+ETime)
+        
+        lobj.write("\n---------------------------------------------------------------------------")
+        
+        lobj.close()
 
 if __name__ == "__main__":
     main()

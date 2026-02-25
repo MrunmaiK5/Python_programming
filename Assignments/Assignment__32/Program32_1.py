@@ -29,7 +29,7 @@ def DirectoryChecksum(DictName):
             print("Directory for log files gets created succesfully")
         
         name = time.strftime("%Y-%m-%d_%H_%M_%S")+".log"
-        FileName = os.path.join(FolderName,"Mrunmai_%s.log" %name)
+        FileName = os.path.join(FolderName,"Mrunmai_%s" %name)
         lobj = open(FileName,"w")
 
         if (os.path.exists(DictName) == False):
@@ -43,8 +43,8 @@ def DirectoryChecksum(DictName):
         for root, subdir, files in os.walk(DictName):
 
             for file in files:
-                Path = os.path.join(root,file)
-                fobj = open(Path,"rb")
+                file = os.path.join(root,file)
+                fobj = open(file,"rb")
 
                 hobj = hashlib.md5()
                 Buffer = fobj.read()
